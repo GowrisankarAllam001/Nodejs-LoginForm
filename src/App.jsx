@@ -1,0 +1,24 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./Login";
+import Register from "./Register";
+import Dashboard from "./Dashboard";
+import VerifyEmail from "./VerifyEmail";
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/verify-email/:token" element={<VerifyEmail />} /> {/* Updated to accept token */}
+        <Route path="/verification-success" element={<VerifyEmail initialStatus="success" />} />
+        <Route path="/verification-failed" element={<VerifyEmail initialStatus="error" />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
